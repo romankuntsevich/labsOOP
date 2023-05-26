@@ -1,0 +1,46 @@
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+
+class Double
+{
+
+public:
+
+	Double(double num) {
+		this->num = num;
+	};
+
+	double GetNum() { return num; }
+
+	double POW(int x) {
+		return(pow(num, x));
+	}
+
+private:
+	double num;
+};
+
+Double operator + (Double& a, Double& b) {
+	return (a.GetNum() + b.GetNum());
+}
+Double operator - (Double& a, Double& b) {
+	return (a.GetNum() - b.GetNum());
+}
+Double operator * (Double& a, Double& b) {
+	return (a.GetNum() * b.GetNum());
+}
+Double operator / (Double& a, Double& b) {
+	return (a.GetNum() / b.GetNum());
+}
+
+int main()
+{
+	Double a{ 2.8 }, b{ 2.2 }, c{ 0 };
+
+
+	return 0;
+}
+

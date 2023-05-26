@@ -1,0 +1,90 @@
+#include <string>
+#include <iostream>
+
+using namespace std;
+
+class Decimal
+{
+
+public:
+
+    float number_first;
+    float number_second;
+
+    Decimal(string n1, string n2)
+    {
+        number_first = stof(n1.c_str());
+        number_second = stof(n2.c_str());
+    }
+    Decimal(float n1, float n2)
+    {
+        number_first = n1;
+        number_second = n2;
+    }
+
+    void SUM()
+    {
+
+        cout << "Сумма чисел: " << number_first + number_second << endl;
+
+    }
+    void DIF()
+    {
+        cout << "Разность чисел: " << number_first - number_second << endl;
+    }
+    void COMPAIR()
+    {
+        if (number_first > number_second)cout << number_first << " > " << number_second << endl;
+        else if (number_first < number_second)cout << number_first << " < " << number_second << endl;
+        else if (number_first == number_second)cout << number_first << " = " << number_second << endl;
+        else cout << " ERROR " << endl;
+    }
+
+private:
+
+
+};
+
+void Menu(Decimal l);
+
+int main()
+{
+    setlocale(0, "rus");
+    Decimal l("+2333,55", "-34,2");
+
+    Menu(l);
+
+    return 0;
+}
+
+void Menu(Decimal l)
+{
+    int choice = -1;
+
+    do
+    {
+        system("pause");
+        system("cls");
+
+
+        cout << " MENU " << endl << endl;
+        cout << "1|" << "\tСложение" << endl;
+        cout << "2|" << "\tВычитание" << endl;
+        cout << "3|" << "\tСравнение" << endl << endl;
+
+        cout << "0|" << " ВЫХОД" << endl << endl;
+        cout << " Ваш выбор ...  " << endl;
+        cin >> choice;
+        switch (choice)
+        {
+        case 1: l.SUM(); break;
+        case 2: l.DIF(); break;
+        case 3: l.COMPAIR(); break;
+        case 0: break;
+        default:
+        {   cout << " RECHOICE " << endl;
+        break;
+        }
+        }
+    } while (choice != 0);
+}

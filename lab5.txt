@@ -1,0 +1,139 @@
+#include <iostream>
+
+
+#define PI 3.14
+
+using namespace std;
+
+
+enum material
+{
+	metal, wood, plastic, cardboard
+};
+
+
+class Cylinder
+{
+
+	int radius;
+	int height;
+public:
+
+
+
+	Cylinder()
+	{
+		cout << " Заполнение значений цилиндра " << endl << endl;;
+		cout << "Введите значение радиуса: ";
+		cin >> radius;
+		cout << "Введите значение Высоты: ";
+		cin >> height;
+		cout << endl << endl;
+	};
+
+	void Init_S_Full() {
+		s_full = (2 * PI * pow(radius, 2) + 2 * PI * radius * height);
+	}
+	void Init_Value() {
+		value = PI * pow(radius, 2) * height;
+	}
+	void Init_Weight(int material) {
+		weight = PI * pow(radius, 2) * height * material;
+	}
+
+	double Get_Weight() { return  weight; }
+
+	void print() {
+		cout << "Площадь всей фигуры: " << s_full << endl;
+		cout << "Объем: " << value << endl;
+		cout << "Вес: " << weight << endl;
+	}
+
+	void print_state()
+	{
+		cout << "Рисую Cylinder(Прямой цилиндр)";
+	}
+
+
+private:
+	double s_full;
+	double value;
+	double weight;
+};
+
+
+int material_for_v();
+
+
+int main()
+{
+	setlocale(0, "rus");
+
+	int const SIZE = 2;
+	int material_int = material_for_v();
+
+	system("cls");
+
+	Cylinder arr[SIZE];
+
+	system("cls");
+
+	cout << " НЕОТСОРТИРОВАННЫЙ МАССИВ" << endl << endl;
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << "Фигура №" << i + 1 << endl;
+		arr[i].Init_S_Full();
+		arr[i].Init_Value();
+		arr[i].Init_Weight(material_int);
+		arr[i].print();
+		cout << endl;
+	}
+
+	cout << endl << endl;
+	cout << "ОТСОРТИРОВАННЫЙ МАССИВ" << endl << endl;
+	for (int i = 0; i < SIZE; i++)
+	{
+		for (int j = 0; j < SIZE - 1; j++)
+		{
+			if (arr[j].Get_Weight() > arr[j + 1].Get_Weight())
+			{
+				swap(arr[j], arr[j + 1]);
+			}
+		}
+	}
+	for (int i = 0; i < SIZE; i++)
+	{
+		cout << "Фигура №" << i + 1 << endl;
+		arr[i].print();
+		cout << endl;
+	}
+
+
+	return 0;
+}
+
+
+int material_for_v()
+{
+	material s;
+	int choice = 0;
+	cout << " Выберете матераиал " << endl << endl
+		<< "1| Железо" << endl << "2| Дерево" << endl
+		<< "3| Пластик" << endl << "4| Картон" << endl << endl
+		<< "Ваш выбор: ";
+	cin >> choice;
+	switch (choice)
+	{
+	case 1:
+		s = metal; return 7874; break;
+	case 2:
+		s = wood; return 1540; break;
+	case 3:
+		s = plastic; return 1100; break;
+	case 4:
+		s = cardboard; return 700; break;
+	default:
+		break;
+	}
+
+}

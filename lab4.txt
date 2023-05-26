@@ -1,0 +1,66 @@
+#include <iostream>
+
+using std::cout;
+using std::cin;
+using std::endl;
+
+
+class vector_on_p
+{
+public:
+	vector_on_p(int volue1, int volue2)
+	{
+		x = volue1;
+		y = volue2;
+	};
+
+	virtual void print_vector() { cout << "  КООРДИНАТЫ КОНЦА ПЛОСКОГО ВЕКТОРА = (" << x << ";" << y << ")" << endl; }
+private:
+
+
+protected:
+	int x;
+	int y;
+
+};
+
+class vector_3d : public vector_on_p
+{
+public:
+
+	vector_3d(int volue1, int volue2, int volue3) :
+		vector_on_p(volue1, volue2)
+	{
+		z = volue3;
+	};
+
+	void print_vector()
+	{
+		{ cout << "КООРДИНАТЫ КОНЦА 3Д ВЕКТОРА = (" << x << ";" << y << ";" << z << ")" << endl; }
+	}
+
+private:
+
+protected:
+	int z;
+};
+
+
+int main()
+{
+
+	setlocale(0, "rus");
+
+	vector_on_p a(2, 3);
+	cout << endl;
+	vector_3d b(2, 3, 5);
+
+	vector_on_p* pv;
+	pv = &a;
+	pv->print_vector();
+	pv = &b;
+	pv->print_vector();
+
+
+	return 0;
+}
